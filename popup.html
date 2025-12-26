@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hydration Break</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #1e3a8a;
+      --accent: #60a5fa;
+      --accent-soft: #93c5fd;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-main: #e0f2fe;
+      --text-soft: #93c5fd;
+    }
+
+    body {
+      margin: 0;
+      width: 360px;
+      background: radial-gradient(circle at top right, var(--bg-light), var(--bg-dark) 80%);
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+      color: var(--text-main);
+      letter-spacing: 0.3px;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    .container {
+      padding: 24px 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon {
+      font-size: 42px;
+      filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.8));
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-soft);
+    }
+
+    .title p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
+
+    /* Status card */
+    .status {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--accent-soft);
+      box-shadow: 0 2px 20px rgba(255, 255, 255, 0.05) inset;
+      transition: all 0.25s ease;
+    }
+
+    .status.active {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #bbf7d0;
+      box-shadow: 0 2px 25px rgba(16, 185, 129, 0.3) inset;
+    }
+
+    /* Stats grid */
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      letter-spacing: 0.6px;
+    }
+
+    /* Settings section */
+    .settings {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    input[type="number"] {
+      width: 64px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--bg-dark);
+      text-align: center;
+      transition: border 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    button {
+      all: unset;
+      text-align: center;
+      padding: 13px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent-soft);
+      border: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 4px;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="icon">💧</div>
+      <div class="title">
+        <h1>Hydration</h1>
+        <p>Mindful pause, elevated focus</p>
+      </div>
+    </div>
+
+    <div id="statusCard" class="status">
+      <div id="statusText">Auto Mode Inactive</div>
+      <div id="countdownText" style="
+        font-size: 13px;
+        margin-top: 6px;
+        color: #a5b4fc;
+        opacity: 0.85;
+        display: none;
+      ">
+        Next break in <span id="countdownTimer">--:--</span>
+      </div>
+    </div>
+
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="breaksCount">0</div>
+        <div class="stat-label">Breaks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="waterAmount">0ml</div>
+        <div class="stat-label">Hydrated</div>
+      </div>
+    </div>
+
+    <div class="settings">
+      <div class="setting-row">
+        <input type="number" id="intervalInput" value="60" min="1" max="180">
+        <span>minutes between breaks</span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="toggleBtn" class="btn-primary">▶ Start Auto Mode</button>
+      <button id="breakNowBtn" class="btn-secondary">💧 Take Break Now</button>
+    </div>
+
+    <footer>Hydration Break Reminder</footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
